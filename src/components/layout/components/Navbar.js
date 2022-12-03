@@ -1,7 +1,6 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
 import {Navbar as BootstrapNavbar} from 'react-bootstrap'
-import { Button, Alert } from 'react-bootstrap';
 
 const Navbar = () => {
   return (
