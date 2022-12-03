@@ -17,9 +17,7 @@ import {
 const Auth = () => {
   return (
     <Container>
-      <Row className={'justify-content-center'}
-           style={{ minHeight: '100vh' }}
-      >
+      <Row className={'justify-content-center mt-5'}>
         <Col className={'mt-auto mb-auto'}
              md={6}
              lg={4}

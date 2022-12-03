@@ -2,7 +2,7 @@ import React from 'react'
 import { ThemeProvider } from 'react-bootstrap'
 import Navbar from './components/Navbar'
 
-const MainLayout = ({children}) => {
+const MainLayout = ({ children }) => {
   
   /* TODO plug for auth state */
   const isAuth = true
