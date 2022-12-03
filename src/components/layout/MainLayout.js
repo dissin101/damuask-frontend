@@ -1,10 +1,16 @@
 import React from 'react'
+import { ThemeProvider } from 'react-bootstrap'
+import Navbar from './components/Navbar'
 
 const MainLayout = ({children}) => {
   return (
-    <div>
+    <ThemeProvider
+      breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
+      minBreakpoint="xxs"
+    >
+      <Navbar />
       {children}
-    </div>
+    </ThemeProvider>
   )
 }
 
