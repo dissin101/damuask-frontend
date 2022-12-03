@@ -2,9 +2,11 @@ import React from 'react'
 import {
   Card,
   Col,
-  Container, InputGroup,
+  Container,
+  FloatingLabel,
   Row,
-  Form, Button
+  Form,
+  Button,
 } from 'react-bootstrap'
 
 /**
@@ -23,23 +25,23 @@ const Auth = () => {
              lg={4}
              xl={3}
         >
-          <Card className={'pt-4 pb-4 p-2'}>
-            <h5 className={'text-center'}>Авторизация</h5>
-            <InputGroup size="md" className="mt-2 mb-3">
-              <Form.Control
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                placeholder={'ИИН'}
-              />
-            </InputGroup>
-            <InputGroup size="md" className="mt-2 mb-3">
-              <Form.Control
-                aria-label="Default"
-                aria-describedby="inputGroup-sizing-default"
-                placeholder={'******'}
-              />
-            </InputGroup>
-            <Button variant="primary">Войти</Button>
+          <Card className={'p-4'}>
+            <h4 className={'text-center'}>Авторизация</h4>
+            <FloatingLabel
+              controlId="floatingInput"
+              label="ИИН"
+              className="mt-3 mb-3"
+            >
+              <Form.Control type="string" placeholder="000000000000" />
+            </FloatingLabel>
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Пароль"
+              className="mt-3 mb-4"
+            >
+              <Form.Control type="string" placeholder="******" />
+            </FloatingLabel>
+            <Button size={'lg'} variant="primary">Войти</Button>
           </Card>
         </Col>
       </Row>
