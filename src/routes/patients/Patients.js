@@ -64,7 +64,7 @@ const Patients = () => {
               label="Поиск по ИИН"
               className="mt-3 mb-3"
             >
-              <Form.Control type="string" placeholder="000000000000" onChange={e => setSearchIIN(e.target.value)}/>
+              <Form.Control type="number" placeholder="000000000000" onChange={e => setSearchIIN(e.target.value)}/>
             </FloatingLabel>
             <div className={'mt-2'}>
               {isSearching && <div>Поиск...</div>}
