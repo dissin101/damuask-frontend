@@ -2,22 +2,34 @@ import React, { useState, useEffect } from 'react'
 import { Button, Card, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap'
 import useDebounce from '../../hooks/debounce'
 import { useSearchCardsMutation } from '../../store/cards/CardsService'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Patients = () => {
   
-  const [search, {isLoading, error, data}] = useSearchCardsMutation()
+  const navigate = useNavigate()
+  
+  const [search, { isLoading, error, data }] = useSearchCardsMutation()
   
   const [searchIIN, setSearchIIN] = useState('')
   const [results, setResults] = useState([])
   const [isSearching, setIsSearching] = useState(false)
   const debouncedSearchTerm = useDebounce(searchIIN, 500)
   
+  const isAuth = Boolean(useSelector((state) => state.auth.user))
+  
+  useEffect(() => {
+    if (!isAuth){
+      navigate('/auth')
+    }
+  }, [isAuth])
+  
   useEffect(
     () => {
       if (debouncedSearchTerm) {
         setIsSearching(isLoading)
-  
-        search({searchName: debouncedSearchTerm})
+        
+        search({ searchName: debouncedSearchTerm })
       } else {
         setResults([])
       }
@@ -28,6 +40,13 @@ const Patients = () => {
   useEffect(() => {
     setResults(data)
   }, [data])
+  
+  const goToMedFileHandler = (iin) => {
+    
+    const path = iin ? `/med-file/${iin}` : '/med-file'
+    
+    navigate(path)
+  }
   
   return (
     <Container className={'mt-4'}>
@@ -47,7 +66,11 @@ const Patients = () => {
               {
                 results && results.length > 0 ?
                   results.map((data) => (
-                    <Card className={'p-2 d-flex mb-2'} style={{cursor: 'pointer'}}>
+                    <Card
+                      className={'p-2 d-flex mb-2'}
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => goToMedFileHandler(data.iin)}
+                    >
                       <div>
                         <span className={'text-uppercase text-secondary'}>ИИН:</span>{' '}
                         <span>{data.iin}</span>
@@ -63,7 +86,7 @@ const Patients = () => {
                     {debouncedSearchTerm.length > 0 &&
                       <p className={'text-center'}>Пациент с таким ИИН не найден</p>}
                     <div className={'d-flex justify-content-center'}>
-                      <Button variant={'success'}>Добавить пациента</Button>
+                      <Button variant={'success'} onClick={() => goToMedFileHandler()}>Добавить пациента</Button>
                     </div>
                   </div>
               }
