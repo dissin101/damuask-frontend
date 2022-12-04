@@ -28,7 +28,9 @@ const MainLayout = ({ children }) => {
     }
   }, [getInfoData])
   
-  const isAuth = Boolean(useSelector((state) => state.auth.user))
+  const {user} = useSelector(state => state.auth)
+  
+  const isAuth = Boolean(user)
   
   return (
     <ThemeProvider
@@ -36,7 +38,7 @@ const MainLayout = ({ children }) => {
       minBreakpoint="xxs"
     >
       { isAuth &&
-        <Navbar />
+        <Navbar user={user} />
       }
       {children}
     </ThemeProvider>
