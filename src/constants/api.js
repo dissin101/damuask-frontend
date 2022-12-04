@@ -1,1 +1,1 @@
-export const MAIN_API_URL = ''
+export const MAIN_API_URL = 'http://192.168.8.124:8080'
