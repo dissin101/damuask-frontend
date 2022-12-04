@@ -11,8 +11,14 @@ export const cardsApi = createApi({
         method: 'POST',
         body
       })
-    })
+    }),
+    searchCardByIIN: builder.query({
+      query: (id) => ({
+        url: `/test/patientCard/getPatientCardDto/${id}`,
+        method: 'GET'
+      })
+    }),
   }),
 })
 
-export const {useSearchCardsMutation} = cardsApi
+export const {useSearchCardsMutation, useSearchCardByIINQuery} = cardsApi
