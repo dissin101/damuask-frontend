@@ -1,33 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import './TextArea.css';
-import { useGetMedFileDataMutation } from '../../store/medFileData/medFileDataService';
+import Tags from '../tags/Tags';
+import { useGetPhrasesDataMutation } from '../../store/phrasesData/phrasesDataService';
 import { useSelector, useDispatch } from 'react-redux'
-import { setMedFileData } from '../../store/medFileData/medFileData.slice';
+import { setPhrasesData } from '../../store/phrasesData/phrasesData.slice';
 import { setCurrentPage } from '../../store/currentPage/currentPage.slice';
 
 const TextArea = () => {
-  const [parseText, { isLoading, error, data }] = useGetMedFileDataMutation();
-
+  const [getPhrasesData, { isLoading, error, data }] = useGetPhrasesDataMutation();
   const [textAreaValue, setTextAreaValue] = useState("");
-
-  const medFile = useSelector((state) => state.medFile);
   const currentPage = useSelector((state) => state.currentPage.data);
   const dispatch = useDispatch();
 
   // Обработка полученных данных
   useEffect(() => {
+    // console.log(data);
     if (data) {
-      dispatch(setMedFileData(data));
+      dispatch(setPhrasesData(data));
     }
   }, [dispatch, data]);
 
   // При изменении текста в textarea (отправка запроса)
   useEffect(() => {
-    parseText({
+    getPhrasesData([{
       sectionCode: currentPage,
-      textAreaValue
-    });
-  }, [parseText, textAreaValue, currentPage]);
+      text: textAreaValue
+    }]);
+  }, [getPhrasesData, textAreaValue, currentPage]);
 
   const handleChangeText = (e) => {
     setTextAreaValue(e.target.value);
@@ -35,7 +34,7 @@ const TextArea = () => {
 
   return (
     <textarea
-      placeholder='Введите текст'
+      placeholder="Введите текст"
       className="textarea"
       onChange={handleChangeText}
       value={textAreaValue}

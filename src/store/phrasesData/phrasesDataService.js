@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { MAIN_API_URL } from '../../constants/api'
 
-export const medFileDataApi = createApi({
-  reducerPath: 'medFileDataApi',
+export const phrasesDataApi = createApi({
+  reducerPath: 'phrasesDataApi',
   baseQuery: fetchBaseQuery({ baseUrl: MAIN_API_URL }),
   endpoints: (builder) => ({
 
-    getMedFileData: builder.mutation({
+    getPhrasesData: builder.mutation({
         query: (body) => ({
           headers: {
             'content-type': 'application/json',
@@ -20,4 +20,4 @@ export const medFileDataApi = createApi({
   }),
 })
 
-export const { useGetMedFileDataMutation } = medFileDataApi
+export const { useGetPhrasesDataMutation } = phrasesDataApi;

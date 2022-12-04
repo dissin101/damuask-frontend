@@ -19,7 +19,7 @@ const MedFile = () => {
         <Col sm={3} style={{ maxWidth: '300px', marginTop: '20px' }}>
           <Nav variant="pills" className="flex-column">
             <Nav.Item>
-              <Nav.Link eventKey="primary-examination">Первичный осмотр</Nav.Link>
+              <Nav.Link eventKey="primary-examination" >Первичный осмотр</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="complaints-on-admission">Жалобы при поступлении</Nav.Link>
@@ -67,6 +67,7 @@ const MedFile = () => {
             </Tab.Pane>
           </Tab.Content>
         </Col>
+        
       </Row>
     </Tab.Container>
   );

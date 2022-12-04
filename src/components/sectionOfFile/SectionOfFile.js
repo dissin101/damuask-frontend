@@ -4,7 +4,6 @@ import TextArea from '../textArea/TextArea';
 import Tags from '../tags/Tags';
 import Button from 'react-bootstrap/Button';
 
-
 const SectionOfFile = () => {
   
   return (

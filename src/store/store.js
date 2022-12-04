@@ -3,23 +3,23 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 import { authApi } from './auth/authService'
 import { cardsApi } from './cards/CardsService'
 import authReducer from './auth/authSlice'
-import { medFileDataApi } from './medFileData/medFileDataService';
-import { medFileSlice } from './medFileData/medFileData.slice';
+import { phrasesDataApi } from './phrasesData/phrasesDataService';
+import { phrasesDataSlice } from './phrasesData/phrasesData.slice';
 import { medFormDataSlice } from './medFormData/medFormData.slice';
 import { currentPageSlice } from './currentPage/currentPage.slice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    medFile: medFileSlice.reducer,
+    phrasesData: phrasesDataSlice.reducer,
     currentPage: currentPageSlice.reducer,
     medFormData: medFormDataSlice.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [cardsApi.reducerPath]: cardsApi.reducer,
-    [medFileDataApi.reducerPath]: medFileDataApi.reducer,
+    [phrasesDataApi.reducerPath]: phrasesDataApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware, cardsApi.middleware, medFileDataApi.middleware),
+    getDefaultMiddleware().concat(authApi.middleware, cardsApi.middleware, phrasesDataApi.middleware),
 })
 
 setupListeners(store.dispatch)
