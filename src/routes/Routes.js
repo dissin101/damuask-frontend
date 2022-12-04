@@ -19,8 +19,7 @@ const Routes = () => {
     router = createBrowserRouter(
       createRoutesFromElements(
         <>
-          <Route path="/" element={<Index/>}/>
-          <Route path="/patients" element={<Patients/>}/>
+          <Route path="/" element={<Patients/>}/>
           <Route
             path="*"
             element={<Navigate to="/" replace />}

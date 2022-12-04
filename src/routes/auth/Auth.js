@@ -165,7 +165,7 @@ const Auth = () => {
               </div>
               
               {error &&
-                <Alert className={'mt-2 mb-2'} variant={'danger'}>{error.data.message}</Alert>
+                <Alert className={'mt-2 mb-2'} variant={'danger'}>{error?.data?.message}</Alert>
               }
               
               <Button
