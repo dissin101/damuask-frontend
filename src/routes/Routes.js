@@ -23,10 +23,7 @@ const Routes = () => {
         <>
           <Route path="/" element={<Patients/>}/>
           <Route path="/med-file" element={<MedFile/>}/>
-          <Route
-            path="*"
-            element={<Navigate to="/" replace />}
-          />
+          
         </>
       )
     )
@@ -35,10 +32,6 @@ const Routes = () => {
       createRoutesFromElements(
         <>
           <Route path="/auth" element={<Auth/>}/>
-          <Route
-            path="*"
-            element={<Navigate to="/auth" replace />}
-          />
         </>
       )
     )
