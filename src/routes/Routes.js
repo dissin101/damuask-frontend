@@ -42,16 +42,6 @@ const Routes = () => {
     )
   }
   
-  /*const router = createBrowserRouter(
-    createRoutesFromElements(
-      <>
-        <Route path="/" element={<Index/>}/>
-        <Route path="/auth" element={<Auth/>}/>
-        <Route path="/patients" element={<Patients/>}/>
-      </>
-    )
-  )*/
-  
   return(
     <RouterProvider router={router}/>
   )
