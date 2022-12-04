@@ -14,6 +14,7 @@ import { useGetUserInfoMutation, useLoginUserMutation, useRegisterUserMutation }
 import { setInLocalStorage } from '../../utils/localStorage'
 import { useDispatch, useSelector } from 'react-redux'
 import { setUserData } from '../../store/auth/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 
 /**
@@ -43,6 +44,15 @@ const Auth = () => {
   const error = errorLogin || errorRegister || errorGetInfo
   
   const dispatch = useDispatch()
+  
+  const isAuth = Boolean(useSelector((state) => state.auth.user))
+  const navigate = useNavigate()
+  
+  useEffect(() => {
+    if (isAuth){
+      navigate('/')
+    }
+  }, [isAuth])
   
   useEffect(() => {
     if (getInfoData){

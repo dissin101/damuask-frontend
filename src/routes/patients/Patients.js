@@ -3,6 +3,7 @@ import { Button, Card, Col, Container, FloatingLabel, Form, Row } from 'react-bo
 import useDebounce from '../../hooks/debounce'
 import { useSearchCardsMutation } from '../../store/cards/CardsService'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Patients = () => {
   
@@ -14,6 +15,14 @@ const Patients = () => {
   const [results, setResults] = useState([])
   const [isSearching, setIsSearching] = useState(false)
   const debouncedSearchTerm = useDebounce(searchIIN, 500)
+  
+  const isAuth = Boolean(useSelector((state) => state.auth.user))
+  
+  useEffect(() => {
+    if (!isAuth){
+      navigate('/auth')
+    }
+  }, [isAuth])
   
   useEffect(
     () => {
