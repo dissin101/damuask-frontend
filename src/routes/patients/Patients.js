@@ -1,35 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Card, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap'
 import useDebounce from '../../hooks/debounce'
+import { useSearchCardsMutation } from '../../store/cards/CardsService'
 
 const Patients = () => {
   
-  /**
-   * Заглушка под API
-   * @type {[{fio: string, iin: string},{fio: string, iin: string},{fio: string, iin: string},{fio: string, iin: string},{fio: string, iin: string}]}
-   */
-  const data = [
-    {
-      fio: 'Кириллов Кирилл',
-      iin: '980222348738'
-    },
-    {
-      fio: 'Иванов Иван',
-      iin: '920222348738'
-    },
-    {
-      fio: 'Сергеев Сергей',
-      iin: '910222348738'
-    },
-    {
-      fio: 'Иванов Иван',
-      iin: '920222348738'
-    },
-    {
-      fio: 'Сергеев Сергей',
-      iin: '910222348738'
-    },
-  ]
+  const [search, {isLoading, error, data}] = useSearchCardsMutation()
   
   const [searchIIN, setSearchIIN] = useState('')
   const [results, setResults] = useState([])
@@ -39,19 +15,19 @@ const Patients = () => {
   useEffect(
     () => {
       if (debouncedSearchTerm) {
-        setIsSearching(true)
-        
-        const result = data.filter((d) => d.iin.includes(debouncedSearchTerm))
-        
-        setIsSearching(false)
-        
-        setResults(result)
+        setIsSearching(isLoading)
+  
+        search({searchName: debouncedSearchTerm})
       } else {
         setResults([])
       }
     },
     [debouncedSearchTerm]
   )
+  
+  useEffect(() => {
+    setResults(data)
+  }, [data])
   
   return (
     <Container className={'mt-4'}>
@@ -69,7 +45,7 @@ const Patients = () => {
             <div className={'mt-2'}>
               {isSearching && <div>Поиск...</div>}
               {
-                results.length > 0 ?
+                results && results.length > 0 ?
                   results.map((data) => (
                     <Card className={'p-2 d-flex mb-2'} style={{cursor: 'pointer'}}>
                       <div>
