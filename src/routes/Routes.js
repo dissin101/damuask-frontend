@@ -7,6 +7,7 @@ import {
 import Index from './index/Index'
 import Auth from './auth/Auth'
 import Patients from './patients/Patients'
+import MedFile from './medFile/MedFile'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -14,6 +15,7 @@ const router = createBrowserRouter(
       <Route path="/" element={<Index/>}/>
       <Route path="/auth" element={<Auth/>}/>
       <Route path="/patients" element={<Patients/>}/>
+      <Route path="/med-file" element={<MedFile/>}/>
     </>
   )
 )

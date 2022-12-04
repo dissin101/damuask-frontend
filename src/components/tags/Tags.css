@@ -1,0 +1,12 @@
+.tags {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: rgba(240, 240, 240, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding: 4px;
+}
