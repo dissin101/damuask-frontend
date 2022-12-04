@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ThemeProvider } from 'react-bootstrap'
+import { Spinner, ThemeProvider } from 'react-bootstrap'
 import Navbar from './components/Navbar'
 import { getFromLocalStorage } from '../../utils/localStorage'
 import { useDispatch, useSelector } from 'react-redux'
@@ -31,6 +31,14 @@ const MainLayout = ({ children }) => {
   const {user} = useSelector(state => state.auth)
   
   const isAuth = Boolean(user)
+  
+  if (isLoadingGetInfo){
+    return (
+      <div className={'d-flex justify-content-center mt-5'}>
+        <Spinner animation="border" variant="primary" />
+      </div>
+    )
+  }
   
   return (
     <ThemeProvider
